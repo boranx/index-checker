@@ -1,8 +1,10 @@
 # Index Checker
 
-Index Checker is an Elasticsearch index validator that validates the index within the given time range and document count.
-All you need is docker (or python 3.6).
-CI Compatible. If the tests fail, the exit code will be different than 0.
+[![Build Status](https://api.travis-ci.com/boranx/index-checker.svg?branch=master)](https://travis-ci.com/boranx/index-checker)
+
+Index Checker is an Elasticsearch index validator that validates the index within the given time range and document count.  
+All you need is docker (or python 3.6).  
+CI Compatible. If the tests fail, the exit code will be different than 0.  
 
 <img src="img/index_checker.png?raw=true" width="720px">
 
