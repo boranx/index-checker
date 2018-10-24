@@ -1,0 +1,40 @@
+---
+  - elastic: 10.1.1.1
+    env: prod-elastic-main
+    aliases:
+      products:
+        day: today
+        document: 2800000
+      suggestions:
+        day: 3
+        document: 19000000
+      categories:
+        day: today
+        document: 45000
+
+  - elastic: 10.1.1.2
+    env: prod-coverage
+    aliases:
+      coverages:
+        day: today
+        document: 200000
+
+  - elastic: 10.1.1.3
+    env: backup-elastic-main
+    aliases:
+      products:
+        day: today
+        document: 2800000
+      suggestions:
+        day: 3
+        document: 19000000
+      categories:
+        day: today
+        document: 45000
+    
+  - elastic: 10.1.1.4
+    env: backup-elastic-coverage
+    aliases:
+      coverages:
+        day: today
+        document: 200000

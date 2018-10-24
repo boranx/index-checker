@@ -1,0 +1,5 @@
+elasticsearch==6.2.0
+slackweb
+pyyaml
+termcolor==1.1.0
+mock
