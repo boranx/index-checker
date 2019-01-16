@@ -22,8 +22,8 @@ run:
 	@python3.6 src/main.py
 
 docker:
-	@docker build . -t boranx/index-checker:1.0.0 -t boranx/index-checker:latest
-	@docker push boranx/index-checker:1.0.0
+	@docker build . -t boranx/index-checker:1.0.1 -t boranx/index-checker:latest
+	@docker push boranx/index-checker:1.0.1
 	@docker push boranx/index-checker:latest
 
 .DEFAULT_GOAL := run

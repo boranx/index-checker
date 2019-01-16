@@ -34,6 +34,13 @@ docker run -v /etc/localtime:/etc/localtime:ro -v $(pwd)/checker.yaml:/app/check
 
 ### Slack Notifier
 
-- Pass your Slack Hook URI to ```src/checker.py```
+- Pass your Slack Hook URI as flag like this :
 
-- Uncomment the ```slack.notify``` line
+```shell
+cd index-checker && export PYTHONPATH=./ && python3.6 src/main.py -s https://hooks.slack.com/services/SLACKHOOKUID
+```
+
+- You can pass to docker with the same way.
+
+- Slack channel will be notified when all tests are passed.
+- Slack channel will be notified when some tests fail.

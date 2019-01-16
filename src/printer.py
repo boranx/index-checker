@@ -39,3 +39,10 @@ class Printer():
             CurrentDocumentCount : %s \n \
             Documents must be higher than: %s \n" % (self._index, self._ip, self._env, self._date, self._requested_day, self._docs, self._requested_docs)
         return text
+    
+    @staticmethod
+    def success_print():
+        text = f"------------------ \n\n \
+            Index Checker succeeded! \n \
+            All tests passed! \n"
+        return text
