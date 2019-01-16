@@ -1,6 +1,7 @@
 # Index Checker
 
 [![Build Status](https://api.travis-ci.org/boranx/index-checker.svg?branch=master)](https://travis-ci.org/boranx/index-checker)
+[![Coverage](https://codecov.io/gh/boranx/index-checker/branch/master/graph/badge.svg)](https://codecov.io/gh/boranx/index-checker)
 
 Index Checker is an Elasticsearch index validator that validates the index within the given time range and document count.  
 All you need is docker (or python 3.6).  

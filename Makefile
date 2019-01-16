@@ -19,7 +19,7 @@ test: clean
 	@pushd tests && python3.6 -m unittest discover -vvv
 
 coverage: clean
-	@pytest --cov=./
+	pytest --cov=./
 
 requirements: clean
 	@sudo pip3 install -r ./requirements.txt
