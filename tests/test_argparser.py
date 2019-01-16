@@ -13,7 +13,7 @@ class argParseTestCase(unittest.TestCase):
     def test_should_retrieve_valid_uri_from_cmd(self):
         sys.argv[1:] = ['-s', 'http://dummy_url']
         options = Arguments.get_params()
-        self.assertEquals('http://dummy_url', options.SLACK_URL)
+        self.assertEqual('http://dummy_url', options.SLACK_URL)
 
     def test_should_retrieve_help_options_from_cmd(self):
         sys.argv[1:] = ['-h']
@@ -27,4 +27,4 @@ class argParseTestCase(unittest.TestCase):
         sys.argv[1:] = ['-s', '']
         arguments = Arguments()
         TEST = arguments.return_slack_uri(parser.parse_args())
-        self.assertEquals('', TEST)
+        self.assertEqual('', TEST)
