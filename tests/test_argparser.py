@@ -28,3 +28,12 @@ class argParseTestCase(unittest.TestCase):
         arguments = Arguments()
         TEST = arguments.return_slack_uri(parser.parse_args())
         self.assertEqual('', TEST)
+
+    def test_should_validate_slack_uri_returns_itself(self):
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-s', dest='SLACK_URL',
+                            help='SUT')
+        sys.argv[1:] = ['-s', 'http://dummy_url']
+        arguments = Arguments()
+        TEST = arguments.return_slack_uri(parser.parse_args())
+        self.assertEqual('http://dummy_url', TEST)

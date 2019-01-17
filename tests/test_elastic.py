@@ -5,7 +5,7 @@ from mock import patch, MagicMock
 
 sys.path.append("../")
 sys.path.append("../src")
-from src.elastic import ElasticSearchService, IndexService
+from src.elastic import ElasticSearchService, AtomicValidateIndex
 
 
 class ElasticSearchServiceTests(unittest.TestCase):
@@ -47,9 +47,11 @@ class ElasticSearchServiceTests(unittest.TestCase):
 
             self.assertIsNotNone(index)
 
-class IndexServiceTests(unittest.TestCase):
+class AtomicValidateIndexTests(unittest.TestCase):
     def tests_should_validate_index_object_should_valid(self):
-        dummy = IndexService("test", "1.1.1.1", "backup", "11-10-2018 02:06:01", "1500")
+        dummy = AtomicValidateIndex("test", "1.1.1.1", "backup", "11-10-2018 02:06:01", "1500","today",1000)
         obj = dummy.get_object()
         self.assertEqual(obj.name, "test")
         self.assertEqual(obj.ip, "1.1.1.1")
+        self.assertEqual(obj.requested_day, "today")
+        self.assertEqual(obj.requested_document, 1000)

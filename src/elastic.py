@@ -51,14 +51,15 @@ class ElasticSearchService:
         return document_count
 
 
-
-class IndexService:
-    def __init__(self, name, ip, env, daytime, docs):
+class AtomicValidateIndex:
+    def __init__(self, name, ip, env, daytime, docs, requested_day, requested_document):
         self.name = name
         self.ip = ip
         self.env = env
         self.daytime = daytime
         self.docs = docs
+        self.requested_day = requested_day
+        self.requested_document = requested_document
 
     def get_object(self):
         return self
