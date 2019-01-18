@@ -3,7 +3,7 @@ import sys
 import datetime
 import time
 import mock
-import os 
+import os
 
 sys.path.append("../")
 sys.path.append("../src")
@@ -21,6 +21,7 @@ except ImportError:
 dirname = os.path.dirname(__file__)
 yaml = os.path.join(dirname, '../checker.yaml')
 parsed_yaml = Parser(yaml).convert()
+
 
 @contextmanager
 def captured_output():
@@ -61,14 +62,29 @@ class CheckerServiceTests(unittest.TestCase):
         listOfIndexes.append(test_index)
         listOfIndexes.append(test_index2)
         flag = sut.mux_checker(listOfIndexes)
-        self.assertTrue(flag)     
-    
+        self.assertTrue(flag)
+
     def test_should_prove_validate_returns_true_if_checks_are_ok(self):
-        sut = Checker("",parsed_yaml)
-        with mock.patch.object(sut, 'mux_checker', return_value=False) as method: 
+        sut = Checker("", parsed_yaml)
+        with mock.patch.object(sut, 'mux_checker', return_value=False) as method:
             with mock.patch.object(sut, 'gather', return_value=[]) as c:
                 sut.validate()
                 method.assert_called()
                 c.assert_called()
                 flag = sut.get_status()
                 self.assertFalse(flag)
+
+    @mock.patch('src.elastic.ElasticSearchService.get_index_date')
+    @mock.patch('src.elastic.ElasticSearchService.get_doc_count')
+    @mock.patch('src.elastic.ElasticSearchService.get_index_of_alias')
+    def test_should_validate_gather_collects_data_from_es(self, mock_request, mock_docs, mock_date):
+        mock_request.return_value = "dummy-products-01-01-2019"
+        mock_docs.return_value = 2000
+        mock_date.return_value = "18-01-2019 08:04:54"
+        sut = Checker("", parsed_yaml)
+        IndexList = sut.gather("1.1.1.1", 1)
+        self.assertIsNotNone(IndexList)
+        self.assertEqual(IndexList[0].ip, "1.1.1.1")
+        self.assertEqual(IndexList[0].docs, 2000)
+        self.assertEqual(IndexList[0].name, "dummy-products-01-01-2019")
+        self.assertEqual(IndexList[0].daytime, "18-01-2019 08:04:54")
