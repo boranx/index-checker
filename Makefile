@@ -8,12 +8,15 @@ MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
 clean:
-	@rm -rf ./.cache \
+	@rm -rf ./.pytest_cache \
+			./.cache \
 			./src/__pycache__/ \
 			./src/validators/__pycache__/ \
 			./tests/__pycache__ \
+			./tests/.pytest_cache \
 			./tests/.cache \
-			**/*.pyc
+			**/*.pyc \
+			./.coverage
 
 test: clean
 	@pushd tests && python3.6 -m unittest discover -vvv

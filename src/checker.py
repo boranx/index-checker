@@ -54,9 +54,12 @@ class Checker:
             self.__slack.notify(Printer.success_print())
 
     def mux_checker(self, listIndex):
+        flag = True
         for item in listIndex:
             if (not self.checker(item)):
-                return False
+                flag = False
+        if flag is False:
+            return False
         return True
 
     def checker(self, index):

@@ -2,6 +2,7 @@ import json
 import sys
 import logging
 from elasticsearch import Elasticsearch
+from elastic_helper import ElasticHelper
 import datetime
 
 logging.basicConfig()
@@ -14,15 +15,7 @@ class ElasticSearchService:
             elasticsearch_ip_address, maxsize=100)
 
     def get_index_of_alias(self, alias_name):
-        index = ""
-        try:
-            index_map = self.elasticSearch.indices.get_alias(alias_name)
-            key, value = index_map.popitem()
-            index = key
-        except:
-            logger.error(str("No index found"))
-            sys.exit(1)
-        return index
+            return ElasticHelper.get_index_from_map(self.elasticSearch.indices.get_alias(alias_name))
 
     def check_exist(self, name):
         if self.elasticSearch.indices.exists(index=name):
