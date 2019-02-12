@@ -30,7 +30,7 @@ make test
 ### Docker
 
 ```shell
-docker run -v /etc/localtime:/etc/localtime:ro -v $(pwd)/checker.yaml:/app/checker.yaml -i boranx/index-checker:latest python3.6 main.py -< checker.yaml
+docker run -v /etc/localtime:/etc/localtime:ro -v $(pwd)/checker.yaml:/app/checker.yaml -i boranx/index-checker:latest python3.6 main.py
 ```
 
 ### Slack Notifier

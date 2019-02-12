@@ -1,5 +1,7 @@
 import logging
+import json
 import sys
+import datetime
 
 logging.basicConfig()
 logger = logging.getLogger("Elastic Helper")
@@ -15,3 +17,24 @@ class ElasticHelper:
             logger.error(str("No index found"))
             sys.exit(1)
         return index
+    
+    @staticmethod
+    def get_date_from_settings(index, settings):
+        try:
+            parsed = json.loads(json.dumps(settings))
+            timestamp = parsed[index]['settings']['index']['creation_date']
+            fmt = "%d-%m-%Y %H:%M:%S"
+            # local time
+            t = datetime.datetime.fromtimestamp(float(timestamp)/1000.)
+        except:
+            logger.error(str("Failed while getting index date"))
+        return t.strftime(fmt)
+
+    @staticmethod
+    def get_doc_count_from_settings(settings):
+        try:
+            parsed = json.loads(json.dumps(settings))
+            document_count = parsed['count']
+        except:
+            logger.error(str("Failed while getting document count"))
+        return document_count
