@@ -26,15 +26,17 @@ class ElasticHelper:
             fmt = "%d-%m-%Y %H:%M:%S"
             # local time
             t = datetime.datetime.fromtimestamp(float(timestamp)/1000.)
+            return t.strftime(fmt)
         except:
             logger.error(str("Failed while getting index date"))
-        return t.strftime(fmt)
+            return -1
 
     @staticmethod
     def get_doc_count_from_settings(settings):
         try:
             parsed = json.loads(json.dumps(settings))
             document_count = parsed['count']
+            return document_count
         except:
             logger.error(str("Failed while getting document count"))
-        return document_count
+            return -1

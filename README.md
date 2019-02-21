@@ -9,6 +9,15 @@ CI Compatible. If the tests fail, the exit code will be different than 0.
 
 <img src="img/index_checker.png?raw=true" width="720px">
 
+### Requirements
+
+- python3.6
+- pip3
+
+OR  
+
+- docker
+
 ### Usage
 
 - Clone the repository

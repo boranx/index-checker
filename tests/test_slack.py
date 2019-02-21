@@ -1,5 +1,6 @@
 import unittest
 import sys
+import slackweb
 
 from mock import patch, MagicMock
 
@@ -16,3 +17,11 @@ class ElasticSearchServiceTests(unittest.TestCase):
                     instance.notify.return_value = msg
         result = instance.notify(msg)
         self.assertIsNotNone(result)
+
+    def test_should_invoke_notify_method(self):
+        msg = "notifier"
+        slack_uri = "http://dummy"
+        with patch('slackweb.Slack.notify') as notified:
+            slack = Slack(slack_uri)
+            slack.notify(msg)
+            notified.assert_called_once_with(text=msg)
